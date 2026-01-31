@@ -5,54 +5,38 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Свадебное приглашение</title>
 
-<!-- ШРИФТЫ -->
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
-/* ================== БАЗОВЫЕ НАСТРОЙКИ ================== */
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Montserrat',sans-serif;color:#222;background:#f5f5f5;overflow-x:hidden}
 section{padding:80px 20px;text-align:center;position:relative}
 h1,h2,h3{font-family:'Playfair Display',serif;font-weight:300;letter-spacing:2px}
 
-/* АНИМАЦИЯ ПОЯВЛЕНИЯ ПРИ СКРОЛЛЕ */
 .fade{opacity:0;transform:translateY(40px);transition:1.2s ease}
 .fade.visible{opacity:1;transform:translateY(0)}
 
-/* ================== ПЕРВЫЙ ЭКРАН (ФОН + ИМЕНА) ================== */
-/* Чтобы поменять фото фона — вставь свою ссылку вместо DATAURI */
-.hero{height:100vh;background:url('./hero.jpg') center/cover fixed no-repeat;display:flex;align-items:center;justify-content:center;color:#fff}
+.hero{height:100vh;background:url('./hero.jpg') center/cover no-repeat;display:flex;align-items:center;justify-content:center;color:#fff}
 .overlay{position:absolute;inset:0;background:rgba(0,0,0,.45)}
 .hero-content{position:relative;z-index:2;text-align:center}
-.names{font-size:56px;margin-bottom:20px} /* ИМЕНА */
-.date{font-size:22px;letter-spacing:4px}   /* ДАТА */
+.names{font-size:56px;margin-bottom:20px}
+.date{font-size:22px;letter-spacing:4px}
 
-/* ================== БЕЛЫЕ ИНФО БЛОКИ ================== */
 .block-white{background:#fff;max-width:850px;margin:auto;padding:60px 40px}
 
-/* ================== ТАЙМИНГ ================== */
 .timing-item{margin:40px 0}
 .timing-time{font-size:42px;margin-bottom:10px}
 
-/* ================== ЛОКАЦИЯ ================== */
-/* Фон локации можно поменять тут */
-.location{height:70vh;background:url('location.png') center/cover fixed no-repeat;display:flex;align-items:center;justify-content:center;color:#fff}
+.location{height:70vh;background:url('location.png') center/cover no-repeat;display:flex;align-items:center;justify-content:center;color:#fff}
 .location-content{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;gap:28px;text-align:center;padding:0 20px}
 .button{margin-top:10px;padding:14px 32px;border:1px solid #fff;text-decoration:none;color:#fff;transition:.3s}
 .button:hover{background:#fff;color:#000}
 
-/* ================== ДЕТАЛИ ================== */
-.details{max-width:850px;margin:auto;text-align:left;line-height:1.8}
-
-/* ================== ФОТО ВНИЗУ (ВЕРТИКАЛЬНЫЕ) ================== */
-/* Сюда вставляются вертикальные фото */
 .footer-photos{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:900px;margin:0 auto}
 .footer-photos img{width:100%;height:520px;object-fit:cover;border-radius:6px}
 
-/* ИНИЦИАЛЫ В САМОМ НИЗУ */
 .initials{font-size:90px;font-family:'Playfair Display',serif;padding:60px 0 20px}
 
-/* ================== МОБИЛЬНАЯ ВЕРСИЯ ================== */
 @media(max-width:768px){
   .names{font-size:34px}
   .date{font-size:16px}
@@ -67,91 +51,102 @@ h1,h2,h3{font-family:'Playfair Display',serif;font-weight:300;letter-spacing:2px
 </head>
 <body>
 
-<!-- ================== ПЕРВЫЙ ЭКРАН ================== -->
 <section class="hero">
   <div class="overlay"></div>
   <div class="hero-content fade">
-    <div class="names">СЕРГЕЙ & МАРИНА</div> <!-- ИЗМЕНИТЬ ИМЕНА -->
-    <div class="date">17 апреля 2026 года</div> <!-- ИЗМЕНИТЬ ДАТУ -->
+    <div class="names">СЕРГЕЙ & МАРИНА</div>
+    <div class="date">17 апреля 2026 года</div>
   </div>
 </section>
 
-<!-- ================== ПРИГЛАШЕНИЕ ================== -->
 <section>
   <div class="block-white fade">
     <h2>ДОРОГИЕ ГОСТИ</h2>
     <p style="margin:30px 0">
       Один день в этом году будет для нас особенным, и мы хотим провести его в кругу близких и друзей.
-            С большим удовольствием приглашаем вас на знаменательный праздник — нашу свадьбу!.
+      С большим удовольствием приглашаем вас на знаменательный праздник — нашу свадьбу!
     </p>
     <h3>17.04.26</h3>
   </div>
 </section>
 
-<!-- ================== ТАЙМИНГ ================== -->
+<!-- ТАЙМЕР -->
+<section>
+  <div class="block-white fade">
+    <h2>ДО СВАДЬБЫ ОСТАЛОСЬ</h2>
+    <div id="countdown" style="margin-top:40px;display:flex;justify-content:center;gap:30px;font-family:'Playfair Display',serif">
+      <div><div id="days" style="font-size:36px">00</div><div>дней</div></div>
+      <div><div id="hours" style="font-size:36px">00</div><div>часов</div></div>
+      <div><div id="minutes" style="font-size:36px">00</div><div>минут</div></div>
+      <div><div id="seconds" style="font-size:36px">00</div><div>секунд</div></div>
+    </div>
+  </div>
+</section>
+
 <section>
   <div class="block-white fade">
     <h2>Время</h2>
-
-    <!-- ПУНКТ ТАЙМИНГА 1 -->
     <div class="timing-item">
       <div class="timing-time">13:00</div>
       <div>Бракосочетание в ЗАГСе<br><small>Лучше прийти минут на 15 пораньше</small></div>
     </div>
-
-    <!-- ПУНКТ ТАЙМИНГА 2 -->
     <div class="timing-item">
       <div class="timing-time">17:00–23:00</div>
       <div>Свадебный банкет</div>
     </div>
-
   </div>
 </section>
 
-<!-- ================== ЛОКАЦИЯ ================== -->
 <section class="location">
   <div class="overlay"></div>
   <div class="location-content fade">
     <h2>ЛОКАЦИЯ</h2>
     <p>Масафир (Рамина)<br>ул. Шашина, 10</p>
-    <a href="https://yandex.ru/maps/-/CPARfC6q" class="button">Перейти к карте</a> <!-- СЮДА ВСТАВИТЬ ССЫЛКУ НА КАРТУ -->
+    <a href="https://yandex.ru/maps/-/CPARfC6q" class="button" target="_blank">Перейти к карте</a>
   </div>
 </section>
 
-<!-- ================== ЦВЕТОВАЯ ГАММА ================== -->
-<section>
-  <div class="details fade">
-    <h2>ЦВЕТОВАЯ ГАММА</h2>
-    <p style="margin-top:20px">
-      Просим не приходить на мероприятие в красном, а девушкам не надевать белые платья!
-    </p>
-  </div>
-</section>
-
-<!-- ================== ФОТО + ИНИЦИАЛЫ ================== -->
 <section>
   <div class="footer-photos fade">
-    <!-- c:\Users\ishpa\Downloads\Telegram Desktop\photo_2026-01-28_18-31-01.jpg -->
     <img src="photo1.jpg" alt="">
-
-    <!-- ВСТАВЬ СЮДА ССЫЛКУ НА ВТОРОЕ ВЕРТИКАЛЬНОЕ ФОТО -->
     <img src="photo2.jpg" alt="">
   </div>
 
-  <div class="initials fade">С & М</div> <!-- ИНИЦИАЛЫ -->
+  <!-- RSVP ФОРМА -->
+  <div class="rsvp fade" style="max-width:820px;margin:60px auto;background:#fff;padding:40px;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,0.08);text-align:left">
+    <h2 style="text-align:center">Подтвердите присутствие</h2>
+    <form action="https://formspree.io/f/xykjqgwy" method="POST" style="display:flex;flex-direction:column;gap:18px;margin-top:30px">
+      <input type="text" name="Имя" placeholder="Ваше имя" required style="padding:12px;border:1px solid #ddd;border-radius:6px">
+      <select name="Присутствие" required style="padding:12px;border:1px solid #ddd;border-radius:6px">
+        <option value="">Выберите вариант</option>
+        <option>Да, с радостью буду</option>
+        <option>К сожалению, не смогу прийти</option>
+      </select>
+      <input type="number" name="Количество гостей" min="1" placeholder="Сколько вас будет?" style="padding:12px;border:1px solid #ddd;border-radius:6px">
+      <textarea name="Комментарий" rows="3" placeholder="Комментарий" style="padding:12px;border:1px solid #ddd;border-radius:6px"></textarea>
+      <button type="submit" style="padding:14px;background:#000;color:#fff;border:none;border-radius:6px">Отправить</button>
+    </form>
+  </div>
+
+  <p style="margin-top:40px;font-size:18px" class="fade">Пожалуйста, сообщите до 17.03.2026 о вашем присутствии!</p>
+  <div class="initials fade">С & М</div>
 </section>
 
-<!-- ================== СКРИПТ АНИМАЦИИ ================== -->
 <script>
-const faders = document.querySelectorAll('.fade');
-const appearOnScroll = new IntersectionObserver(function(entries, observer){
-  entries.forEach(entry=>{
-    if(!entry.isIntersecting) return;
-    entry.target.classList.add('visible');
-    observer.unobserve(entry.target);
-  });
-},{threshold:0.2});
-faders.forEach(fader=>{appearOnScroll.observe(fader);});
+const faders=document.querySelectorAll('.fade');
+const io=new IntersectionObserver((e,o)=>{e.forEach(x=>{if(!x.isIntersecting)return;x.target.classList.add('visible');o.unobserve(x.target);});},{threshold:.2});
+faders.forEach(f=>io.observe(f));
+
+const weddingDate=new Date('2026-04-17T13:00:00+03:00').getTime();
+function update(){
+  const d=weddingDate-Date.now();
+  if(d<=0){countdown.innerHTML='Этот день настал!';return}
+  days.textContent=Math.floor(d/86400000);
+  hours.textContent=Math.floor(d%86400000/3600000);
+  minutes.textContent=Math.floor(d%3600000/60000);
+  seconds.textContent=Math.floor(d%60000/1000);
+}
+setInterval(update,1000);update();
 </script>
 
 </body>
